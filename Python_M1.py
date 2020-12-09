@@ -322,3 +322,165 @@ print(new)
 
 
 """ "Exercice 8 - 6 """
+
+
+
+
+
+# TD3
+
+""" Exercice 1 - 1 à 3 """
+
+n = int(input("Entrer un nombre à multiplier : "))
+
+for i in range(n):
+    print("Table de", int(i) + 1, ":")
+    for num in range(1,11):
+        print((i+1)*num)
+        
+        
+""" Exercice 1 - 4 """
+
+n = int(input("Entrer un nombre à afficher avec des astérix : "))
+
+for num in range(n):
+    print((num+1) * "*")
+    
+
+""" Exercice 1 - 5 """
+
+n = int(input("Entrer un nombre à afficher avec des astérix : "))
+
+for num in range(n):
+    asterix = " " * ((n-1) - num) + ("* " * (num+1))
+    print(asterix)
+    
+
+""" Exercice 2 - 1 """
+
+jours = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+mois = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+mj = []
+longueur = len(jours) - len(mois)
+if longueur == 0:
+    for i in range(len(jours)):
+        mj.append((mois[i], jours[i]))  
+else:
+    print("impossible")
+print(mj)
+
+
+""" Exercice 2 - 2 """
+
+annee = []
+for mois in mj:
+    for i in range(mois[1]):
+        annee.append((str(i+1)) + " " + mois[0])
+print(annee)
+
+
+print(' ')
+print(' ')
+
+
+""" Exercice 2 - 3 """
+
+annee2 = []
+jours_semaine = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+for jour in range(365):
+    annee2.append(jours_semaine[jour%len(jours_semaine)] + " " + annee[jour])
+print(annee2)
+
+
+print(' ')
+print(' ')
+
+
+""" Exercice 2 - 4 et 5 """ 
+
+dico = {}
+jours_semaine = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+for jour in range(365):
+    dico[annee[jour]] = jours_semaine[jour%len(jours_semaine)]
+print(dico)
+print(' ')
+print(' ')
+print(dico["28 October"])
+
+
+""" Exercice 3 - 1 """
+
+notes = []
+while len(notes) < 3:
+    nb = int(input("Entrer une note : "))
+    notes.append(nb)
+    
+minimum = min(notes)
+maximum = max(notes)
+somme = 0
+
+for n in notes:
+    somme += int(n)
+moyenne = float(somme)/len(notes)
+
+print("moyenne : " + str(moyenne))
+print("minimum : " + str(minimum))
+print("maximum : " + str(maximum))
+
+
+""" Exercice 3 - 2 """
+
+x = int(input("Entrer le nombre de notes que vous voulez entrer ? "))
+notes = []
+while len(notes) < x:
+    nb = int(input("Entrer une note : "))
+    notes.append(nb)
+minimum = min(notes)
+maximum = max(notes)
+somme = 0
+
+for n in notes:
+    somme += int(n)
+moyenne = float(somme) / len(notes)
+
+print("moyenne : " + str(moyenne))
+print("minimum : " + str(minimum))
+print("maximum : " + str(maximum))
+
+
+""" Exercice 3 - 3 """
+
+notes = []
+while True:
+    nb = input("Entrer une note (tapez 'fin' pour terminer) : ")
+    if nb == "fin":
+            break
+    else:
+        notes.append(float(nb))
+        minimum = min(notes)
+        maximum = max(notes)
+        somme = 0
+        for n in notes:
+            somme += int(n)
+        moyenne = float(somme) / len(notes)
+
+print("moyenne : " + str(moyenne))
+print("minimum : " + str(minimum))
+print("maximum : " + str(maximum))
+
+
+
+from random import *
+def jeu():
+    aleatoire = randint(1,100)
+    faux = False
+    while not faux:
+        nb = int(input("Devine le nombre entre 1 et 100 : "))
+        if aleatoire > nb:
+            print("Trop petit")
+        elif aleatoire < nb:
+            print("trop grand")
+        elif aleatoire == nb:
+            print("tu as gagné !")
+            break
+jeu()
