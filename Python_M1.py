@@ -484,3 +484,173 @@ def jeu():
             print("tu as gagné !")
             break
 jeu()
+
+
+
+
+# TD4
+
+""" Exercice 1 - 1 et 2 """
+
+from math import pi
+
+def surf_cercle(r=1):
+        return pi * r**2
+
+print(surf_cercle())
+
+
+""" Exercice 1 - 3 """
+
+def vol_boite(lon,lar,hau):
+    return lon * lar * hau
+
+
+""" Exercice 1 - 4 """
+
+def vol_boite2(*args):
+    if len(args) == 1:
+        v = args[0] ** 3
+        return v
+    elif len(args) == 2:
+        v = 1
+        for n in args:
+            v = v * n #1*arg1*arg2
+        return v
+    elif len(args) == 3:
+        v = 1
+        for n in args:
+            v = v * n #1*arg1*arg2*arg3
+        return v
+
+
+print (vol_boite2(2))
+print (vol_boite2(2, 3))
+print (vol_boite2(2, 3, 4))
+
+
+""" Exercice 1 - 5 """
+
+def remplacement(c1,c2,ch):
+    return ch.replace(c1,c2)
+print(remplacement(" ","*","comment allez vous ?"))
+
+
+""" Exercice 1 - 6 """
+
+
+
+
+""" Exercice 2 """
+
+def nb_car(chaine):
+    compteur = 0
+    for lettre in chaine:
+        compteur += 1
+    return compteur
+print(nb_car(chaine="je mange de la soupe"))
+
+def nb_mots(chaine):
+    mots = len(chaine.split())
+    return mots
+print(nb_mots(chaine="je mange  de la soupe"))
+
+
+print(" ")
+print(" ")
+
+
+""" Exercice 3 - 1 """
+
+def TableMult(n, debut=1, fin=10):
+    for i in range(debut, fin+1):
+        print(n * i)
+TableMult(2, 3 , 15)
+
+
+print(" ")
+print(" ")
+
+
+""" Exercice 3 - 2 """
+
+def TableMult2(n, debut=1, fin=10):
+    liste = []
+    if debut > fin:
+        for i in range(fin, debut+1):
+            liste.append(n * i )
+        liste.reverse()
+        print(liste)
+    else:
+        for i in range(debut, fin+1):
+            liste.append(n * i)
+        print(liste)
+TableMult2(2, 15 , 3)
+
+
+""" Exercice 3 - 3 """
+
+def TableMult3():
+    values = []
+    liste = []
+    n = int(input("Entrer la valeur n : "))
+    debut = int(input("Entrer la valeur debut : "))
+    fin = int(input("Entrer la valeur fin : "))
+    values.append((n, debut, fin))
+
+    if values[0][1] > values[0][2]:
+        for i in range(values[0][2], values[0][1]+1):
+            liste.append(values[0][0] * i)
+        liste.reverse()
+        print(liste)
+    else:
+        for i in range(values[0][1], values[0][2]+1):
+            liste.append(values[0][0] * i)
+        print(liste)
+print(" ")
+TableMult3()
+
+print(" ")
+print(" ")
+
+
+""" Exercice 4 """
+
+def motus():
+    from random import randint
+    mots = ["arbre", "grave", "piece", "nuage", "crane", "sonne", "table", "herbe", "ecrou", "mulet"]
+    number = randint(0, len(mots) - 1)
+    random_word = mots[number]
+    word = []
+    word[:0] = random_word
+    user = []
+    for x in range(len(word)):
+        user.append("-")
+    print(" ".join(user))
+    compteur = 0
+
+    while True:
+        compteur += 1
+        if compteur == 11:
+            break
+        else:
+            print("Essai " + str(compteur))
+            lettre = input("Entrer une lettre: ")
+            for i in range(len(word)):
+                if lettre == word[i]:
+                    user[i] = word[i]
+                    if user == word:
+                        print(" ".join(user))
+                        gagne = input("Bravo! Rejouer ? o/n ")
+                        if gagne == "o":
+                            motus()
+                        else:
+                            exit()
+                else:
+                    pass
+            print(" ".join(user))
+
+    rejoue = input("Vous avez perdu Rejoue o/n : ")
+    if rejoue == "o":
+        motus()
+motus()
