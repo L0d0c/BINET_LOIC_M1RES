@@ -41,3 +41,31 @@ for numbers in test2.price:
             print(numbers, "2")
         else:
             print(numbers, "3")
+            
+            
+            
+### FONCTIONS ###
+
+def F1(arg):
+    test = pd.read_csv('mower_market_snapshot.csv',sep=';') #lire CSV
+    test = test.replace('unknown', np.nan) #remplace unknow par NaN
+    test[arg] = pd.to_numeric(test[arg]) #change le dtype au format float64 (argument en numérique)
+    test[arg] = test[arg].replace(np.nan, test[arg].mean())#remplace NaN par la moyenne des valeurs de la colonne 
+    print(test[arg])
+F1('prod_cost')
+
+
+def F2(arg):
+    test = pd.read_csv('mower_market_snapshot.csv',sep=';')
+    test[arg] = pd.to_numeric(test[arg].str[0])
+    print(test[arg]) 
+F2('warranty')    
+
+
+def F3(arg):
+    test = pd.read_csv('mower_market_snapshot.csv', sep=";")
+    test.product_type = pd.Categorical(test.product_type)
+    test[arg] = test.product_type.cat.codes
+    test[arg] = pd.factorize(test[arg])[0] + 1
+    print(test[arg])
+F3('product_type')
